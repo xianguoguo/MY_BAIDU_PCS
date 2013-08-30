@@ -55,7 +55,7 @@ public class Sample {
 	static String secretKey = "116dfc831de5298f73db6d7dadf611b9";
 	static String bucket = "wakao01";
 	// ----------------------------------------
-	static String object = "/img02";
+	static String object = "/ooo1.aac";
 	static File destFile = new File("test");
 
 	/**
@@ -64,7 +64,7 @@ public class Sample {
 	 * @throws IOException
 	 */
 	public static void main(String[] args) throws URISyntaxException, IOException {
-		System.out.println(SignatureUtil.createSignature("wakao01","img011"));
+		System.out.println(SignatureUtil.createSignature("wakao01","ooo1.aac"));
 		/*
 		BCSCredentials credentials = new BCSCredentials(accessKey, secretKey);
 		BaiduBCS baiduBCS = new BaiduBCS(credentials, host);
@@ -100,8 +100,8 @@ public class Sample {
 		} catch (BCSClientException e) {
 			e.printStackTrace();
 		}
-		
 		*/
+		
 	}
 
 	public static void generateUrl(BaiduBCS baiduBCS) {
@@ -204,7 +204,8 @@ public class Sample {
 	}
 
 	public static void putObjectByFile(BaiduBCS baiduBCS) {
-		File file = new File("D:/wakao/webimage/hbimage/20130727/2350/hb_93150405.png");
+		File file = new File("H:/rings");
+		
 		PutObjectRequest request = new PutObjectRequest(bucket, object, file);
 		ObjectMetadata metadata = new ObjectMetadata();
 		// metadata.setContentType("text/html");
