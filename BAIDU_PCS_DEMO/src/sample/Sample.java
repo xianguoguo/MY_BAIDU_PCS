@@ -65,7 +65,7 @@ public class Sample {
 	 */
 	public static void main(String[] args) throws URISyntaxException, IOException {
 		System.out.println(SignatureUtil.createSignature("wakao01","ooo1.aac"));
-		/*
+		
 		BCSCredentials credentials = new BCSCredentials(accessKey, secretKey);
 		BaiduBCS baiduBCS = new BaiduBCS(credentials, host);
 		// baiduBCS.setDefaultEncoding("GBK");
@@ -100,7 +100,7 @@ public class Sample {
 		} catch (BCSClientException e) {
 			e.printStackTrace();
 		}
-		*/
+		
 		
 	}
 
@@ -204,9 +204,9 @@ public class Sample {
 	}
 
 	public static void putObjectByFile(BaiduBCS baiduBCS) {
-		File file = new File("H:/rings");
+		File file = new File("E:/rings/data/20130830/2312/52299.aac");
 		
-		PutObjectRequest request = new PutObjectRequest(bucket, object, file);
+		PutObjectRequest request = new PutObjectRequest(bucket, "/ssd.acc", file);
 		ObjectMetadata metadata = new ObjectMetadata();
 		// metadata.setContentType("text/html");
 		request.setMetadata(metadata);
