@@ -8,7 +8,7 @@ import javax.crypto.spec.SecretKeySpec;
 import org.apache.commons.codec.binary.Base64;
 
 public class SignatureUtil {
-	static String secretKey = "116dfc831de5298f73db6d7dadf611b9";
+	static String secretKey = "";
 	private final static String Flag = "MBO";
 	private final static String content = Flag + "\n"
 	          + "Method=GET" + "\n"
@@ -27,6 +27,6 @@ public class SignatureUtil {
 			e.printStackTrace();
 		}
 		if(out == null){return null;}
-		return URLEncoder.encode(out);//urlencode(base64_encode(hash_hmac("hash1", Content, secretKey,true)));
+		return URLEncoder.encode(out);
 	}
 }
