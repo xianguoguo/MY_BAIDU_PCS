@@ -6,6 +6,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ExecutorService;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+
 import com.baidu.inf.iis.bcs.BaiduBCS;
 import com.baidu.inf.iis.bcs.auth.BCSCredentials;
 import com.baidu.inf.iis.bcs.model.ObjectMetadata;
@@ -13,17 +16,15 @@ import com.baidu.inf.iis.bcs.request.PutObjectRequest;
 import com.baidu.inf.iis.bcs.response.BaiduBCSResponse;
 
 public class UploadRobot implements Runnable {
+	private static final Log log = LogFactory.getLog(UploadRobot.class);
+	
 	private static String host = "bcs.duapp.com";
-	private static String accessKey = "";
-	private static String secretKey = "";
-	private static String bucket = "";
+	private static String accessKey = "AF6741864e356fe38d4a5b2a5de7f3b9";
+	private static String secretKey = "116dfc831de5298f73db6d7dadf611b9";
+	private static String bucket = "/img-article";
 	
 	
 	public BaiduBCS baiduBCS;
-	
-	// 线程池
-	private static ExecutorService pool;
-	
 	private String rootPath;
 	public UploadRobot(String rootPath){
 		BCSCredentials credentials = new BCSCredentials(accessKey, secretKey);
@@ -57,15 +58,19 @@ public class UploadRobot implements Runnable {
     }
 	
 	public void putObjectByFile(File file) {
-		String object = file.getAbsolutePath().replace("\\", "/").replace("E:/rings/data", "");
-		//System.out.println(object);
+		String object = file.getAbsolutePath().replace("\\", "/").replace("E:/img_article", "");
 		
-		PutObjectRequest request = new PutObjectRequest(bucket, object, file);
-		ObjectMetadata metadata = new ObjectMetadata();
-		// metadata.setContentType("text/html");
-		request.setMetadata(metadata);
-		BaiduBCSResponse<ObjectMetadata> response = baiduBCS.putObject(request);
-		System.out.println(response.getRequestId());
+		System.out.println(object);
+		Sample.putObjectByFile(baiduBCS,file,object);
+		
+//		PutObjectRequest request = new PutObjectRequest(bucket, object, file);
+//		ObjectMetadata metadata = new ObjectMetadata();
+//		// metadata.setContentType("text/html");
+//		request.setMetadata(metadata);
+//		BaiduBCSResponse<ObjectMetadata> response = baiduBCS.putObject(request);
+//		ObjectMetadata objectMetadata = response.getResult();
+//		log.info("x-bs-request-id: " + response.getRequestId());
+//		log.info(objectMetadata);
 	}
 	@Override
 	public void run() {
